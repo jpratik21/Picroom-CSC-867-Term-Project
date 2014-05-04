@@ -1,19 +1,37 @@
 == README
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
 * Ruby version
+ruby 2.0.0p451 (2014-02-24 revision 45167) [x86_64-darwin13.1.0]
 
 * System dependencies
+Please install MySQL (use homebrew), set up a default MySQL password.
 
 * Configuration
 
 * Database creation
+mysql -u room // login as the root user
+mysqladmin -u root -p // prompt for password
+// create database
+SHOW DATABASES;
+CREATE DATABASE picroom_dev;
+USE picroom_dev;
+
+// launch MySQL
+mysql -u root -p 
+GRANT ALL PRIVILEGES ON picroom.*
+TO 'picroom'@'localhost'
+IDENTIFIED BY 'password'
+
+SHOW GRANTS FOR 'picroom'@'localhost'
+
+Currently only creating db: picroom_dev
+Username: picroom
+Password: password
+In order to use the database, run the following:
+mysql -u picroom -p picroom_dev
 
 * Database initialization
+Work in rails c
 
 * How to run the test suite
 
