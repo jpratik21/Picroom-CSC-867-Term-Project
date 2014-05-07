@@ -1,5 +1,7 @@
 class PicroomController < ApplicationController
 
+	before_filter :checklogin, :only => [:home, :search]
+	
 	def welcome
 	    reset_session
     	if session[:user_id] != nil 

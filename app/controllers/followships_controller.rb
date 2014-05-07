@@ -1,5 +1,7 @@
 class FollowshipsController < ApplicationController
 
+  before_filter :checklogin
+
   def create
 		followship = Followship.new
 		followship.follower_id = session[:user_id]

@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :photos
   resources :users
 
-  #get '/photos/:id/destroy' => 'Photos#destroy'
+  get '/photos/:id/destroy' => 'photos#destroy'
   get '/error' => 'picroom#error'
   get '/error2' => 'picroom#error2'
   #post '/comments/new/:id' => 'Comments#new'

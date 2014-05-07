@@ -1,5 +1,7 @@
 class PhotosController < ApplicationController
 
+  before_filter :checklogin
+  
   # GET /photos
   # GET /photos.json
   def index

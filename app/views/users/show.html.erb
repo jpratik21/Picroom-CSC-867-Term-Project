@@ -12,13 +12,13 @@
 			<p><%= @user.email %></p>
 	  </div>
 	  <div id="followingbox">
-			<a href="/followships/show/<%=@user.id%>" class="ddm" >
+			<a href="/followships/followees/<%=@user.id%>" class="ddm" >
         <span class="icon icon104"></span>
           <span class="label">
             Following <%= "     " + Followship.where(:follower_id => @user.id).count.to_s%>
           </span>
       </a>
-      <a href="/followships/present/<%=@user.id%>" class="ddm" >
+      <a href="/followships/followers/<%=@user.id%>" class="ddm" >
         <span class="icon icon127"></span>
         <span class="label">
           Followed by  <%= "     " + Followship.where(:followee_id => @user.id).count.to_s%>

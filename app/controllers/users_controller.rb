@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  # before_filter :checklogin, :except => [:new, :create]
+  before_filter :checklogin, :except => [:new, :create]
   
   # GET /users
   # GET /users.json
@@ -87,8 +87,8 @@ class UsersController < ApplicationController
   private
 
     def user_params
-      # same as using "params[:subject]", except that it:
-      # - raises an error if :subject is not present
+      # same as using "params[:user]", except that it:
+      # - raises an error if :user is not present
       # - allows listed attributes to be mass-assigned
       params.require(:user).permit(:user_name, :password, :email, :image)
     end
