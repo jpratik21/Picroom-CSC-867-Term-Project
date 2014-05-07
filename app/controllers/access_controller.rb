@@ -2,6 +2,9 @@ class AccessController < ApplicationController
 
   def login
   	# login form
+    if session[:user_id] != nil 
+       redirect_to '/home'
+    end
   end
 
   def attempt_login
