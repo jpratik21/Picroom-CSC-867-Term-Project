@@ -1,6 +1,21 @@
 Rails.application.routes.draw do
 
-  match ':controller(/:action(:/id))', :via => :get
+  resources :photos
+  resources :users
+
+  #get '/photos/:id/destroy' => 'Photos#destroy'
+  get '/error' => 'picroom#error'
+  get '/error2' => 'picroom#error2'
+  #post '/comments/new/:id' => 'Comments#new'
+  #get '/follows/present/:id' => 'Follows#present'
+  #get '/follows/show/:id' => 'Follows#show'
+  #get '/follows/new/:id' => 'Follows#create'
+  #get '/follows/destroy/:id' => 'Follows#destroy'
+  #post '/search' => 'picroom#search', as: 'search'
+  get '/welcome' =>'picroom#welcome', as: 'welcome'
+  get '/home' =>'picroom#home', as: 'home'
+
+  match ':controller(/:action(:/id))', :via => [:get, :post]
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

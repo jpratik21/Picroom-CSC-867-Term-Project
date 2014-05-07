@@ -13,3 +13,70 @@
  *= require_tree .
  *= require_self
  */
+
+ /* this css is responsible for the navigation bar */
+#headnavwrapper{
+	box-shadow: 0px 2px 5px #888888;
+	height: 40px;
+	margin-top: -5px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#headnav{
+	width: 1024px;	
+	height: 40px;
+	padding:3px;
+	margin-left: auto;
+	margin-right: auto;
+}
+#leftnav{
+	width: 341.3px;
+	height: 40px;
+}
+
+#searchboxwrapper{
+}
+#searchinput{
+	height:36px;
+	float: left;
+}
+#searchbutton{
+	height:36px;
+	float: left;
+}
+
+#middlenav{
+	position: relative;
+	left: 341.3px;
+	top:-36px;
+	width: 341.4px;
+	height: 40px;
+}
+#middlelogo{
+	width:80px;
+	margin-left: auto;
+	margin-right: auto;	
+}
+#rightnav{
+	position: relative;
+	left: 682.7px;
+	top:-78px;
+	width: 341.3px;
+	height: 40px;
+}
+#rightnavbuttons{
+	position:absolute;
+	z-index: 1;
+	left:0px;
+	top:-4px;
+	width: 341.3px;
+	float:right;
+}
+#rightnavAddButton{
+	position:relative;
+	float: right;
+}
+#rightnavMenuButton{
+	position:relative;
+	float: right;
+}

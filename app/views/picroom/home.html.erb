@@ -1,0 +1,38 @@
+<div id="bigbox">
+	<div id="container">
+    <% if @pictures != nil%>
+		  <% for picture in @pictures %>
+          <div class = "item">
+            <a href="photos/<%=picture.id%>">
+              <div class = "itemimage">
+                <%= image_tag @picture.image_url(:thumb).to_s %>
+              </div>
+            </a>
+            <div class = "iteminnerbox">
+              <a href = "/users/<%=picture.user_id%>">
+                <div id = "listboxavantartiny">
+                  <%= image_tag User.find_by_id(picture.user_id).image_url(:supertinythumb) %>
+                </div>
+              </a>
+              <div id = "listboxnametiny">
+                <p> <%= User.find_by_id(picture.user_id).username %></p>
+                <p> <%= picture.created_at%></p>
+              </div>
+            </div>
+          </div>
+      <% end %>
+    <% end %>
+	</div>
+</div>
+
+<script > 
+  var $container = $('#container');
+  $container.imagesLoaded(function(){
+    $container.masonry({
+      itemSelector : '.item',
+      columnWidth : 240
+    });
+  });
+</script>
+
+

@@ -1,0 +1,2 @@
+module PicroomHelper
+end

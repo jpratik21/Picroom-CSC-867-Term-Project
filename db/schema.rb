@@ -11,25 +11,22 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140502010756) do
+ActiveRecord::Schema.define(version: 20140506191924) do
 
-  create_table "albums", force: true do |t|
+  create_table "comments", force: true do |t|
     t.integer  "user_id"
-    t.string   "name",        limit: 25
-    t.boolean  "private",                default: false
-    t.string   "description"
+    t.integer  "photo_id"
+    t.string   "content"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
 
-  add_index "albums", ["user_id"], name: "index_albums_on_user_id", using: :btree
-
-  create_table "albums_photos", force: true do |t|
-    t.integer "album_id"
-    t.integer "photo_id"
+  create_table "followships", force: true do |t|
+    t.integer  "follower_id"
+    t.integer  "followee_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
-
-  add_index "albums_photos", ["album_id", "photo_id"], name: "index_albums_photos_on_album_id_and_photo_id", using: :btree
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"
@@ -42,11 +39,12 @@ ActiveRecord::Schema.define(version: 20140502010756) do
   add_index "photos", ["user_id"], name: "index_photos_on_user_id", using: :btree
 
   create_table "users", force: true do |t|
-    t.string   "user_name",  limit: 25,              null: false
-    t.string   "password",   limit: 40,              null: false
-    t.string   "email",                 default: "", null: false
+    t.string   "user_name",       limit: 25,              null: false
+    t.string   "email",                      default: "", null: false
+    t.string   "image"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "password_digest"
   end
 
   add_index "users", ["user_name"], name: "index_users_on_user_name", using: :btree

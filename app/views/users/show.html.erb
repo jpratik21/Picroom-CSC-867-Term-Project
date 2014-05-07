@@ -1,29 +1,82 @@
-<%= link_to("<< Back to List", {:action => 'index'}, :class => 'back-link') %>
+	
+<div id="insideboxmiddle">
 
-<div class="users show">
-  <h2>Show user</h2>
+  <div id="listbox">
+  	<div id="listboxavantar">
+      <%= image_tag @user.image_url(:tinythumb).to_s%>
+    </div>
+    <div id="listboxname">
+		  <p><%= @user.user_name %></p>
+	  </div>
+	  <div id="listboxemail">
+			<p><%= @user.email %></p>
+	  </div>
+	  <div id="followingbox">
+			<a href="/followships/show/<%=@user.id%>" class="ddm" >
+        <span class="icon icon104"></span>
+          <span class="label">
+            Following <%= "     " + Followship.where(:follower_id => @user.id).count.to_s%>
+          </span>
+      </a>
+      <a href="/followships/present/<%=@user.id%>" class="ddm" >
+        <span class="icon icon127"></span>
+        <span class="label">
+          Followed by  <%= "     " + Followship.where(:followee_id => @user.id).count.to_s%>
+        </span>
+      </a>
+	  </div>
+  </div>
 
-  <table summary="user detail view">
-    <tr>
-      <th>Name</th>
-      <td><%= @user.user_name %></td>
-    </tr>
-    <tr>
-      <th>Password</th>
-      <td><%= @user.password %></td>
-    </tr>
-    <tr>
-      <th>Email</th>
-      <td><%= @user.email %></td>
-    </tr>
-    <tr>
-      <th>Created</th>
-      <td><%= @user.created_at %></td>
-    </tr>
-    <tr>
-      <th>Updated</th>
-      <td><%= @user.updated_at %></td>
-    </tr>
-  </table>
+	<% if session[:user_id] != @user.id %>
+	  <% if User.find_by_id(session[:user_id]).isFollowing(@user.id) %>
+      <div id="listboxbuttonsextra">
+        <a href="/followships/destroy/<%=@user.id%>" class="button red">
+            Unfollow
+        </a>
+      </div>
+    <% else %>
+      <div id="listboxbuttonsextra">
+        <a href="/followships/new/<%=@user.id%>" class="button blue">
+            Follow
+        </a>
+      </div>
+    <% end %>
+  <% end %>
 
+	<% if session[:user_id] == @user.id %>
+	  <div id="listboxbuttonsextra">
+	    <a href="/users/<%=@user.id%>/edit" style="width:40px;text-align:center" class="button green">
+			 Edit
+	    </a>	
+	  </div>
+	<% end %>
+</div><!--insideboxmiddle-->
+
+<div id="bigbox">
+	<div id="container">
+    <% if @photos != nil%>
+		  <% for @photo in @photos %>
+        <div class = "item">
+          <a href="/photos/<%=@photo.id%>">
+            <div class = "itemimage">
+              <%= image_tag @photo.image_url(:thumb).to_s %>
+            </div>
+          </a>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
 </div>
+
+<script > 
+  var $container = $('#container');
+  $container.imagesLoaded(function(){
+    $container.masonry({
+      itemSelector : '.item',
+      columnWidth : 240
+    });
+  });
+</script>
+
+
+

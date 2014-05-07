@@ -1,0 +1,14 @@
+<%= form_tag(:action => 'attempt_login') do %>
+  <div class="field">
+    <input id="username" name="username" class="rounded" placeholder="Username" type="text" />
+  </div>
+  <div class="field">
+    <input id="password" name="password" class="rounded" placeholder="Password" type="password" />
+  </div>
+
+   <button class="action blue" style="float:right;">
+    <span class="label">
+      Sign In
+    </span>
+  </button>
+<% end %>

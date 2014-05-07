@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class AlbumTest < ActiveSupport::TestCase
+class PicroomControllerTest < ActionController::TestCase
   # test "the truth" do
   #   assert true
   # end

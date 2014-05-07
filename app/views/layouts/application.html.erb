@@ -1,14 +1,137 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Picroom</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <title>Pictures</title>
+  <%= stylesheet_link_tag    "application", :media => "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 </head>
 <body>
+  <% if User.find_by_id(session[:user_id]) != nil %>
+  <div id="headnavwrapper">
+    <div id="headnav">
+            <div id="leftnav">
+                    <div id="searchboxwrapper">
+                            <%= form_tag "/search" do %>
+                            <div id="searchinput">
+                            <div class="field">
+                                            <input id="searchcontent" name="searchcontent" class="rounded" placeholder="Search for users or pictures" size="30" type="text" />
+                            </div> 
+                            </div>
+                            <div id="searchbutton">
+                                    <button class="action" >
+                                        <span class="icon icon198">
+                                        </span>
+                                    </button>
+                            </div> 
+                            <% end %>
+
+                    </div>
+            </div>
+            <div id="middlenav">
+                <a href='/home'>
+                <div id="middlelogo">
+                    <%= image_tag "logo.png", :size => "100x30"%>
+                </div>
+                </a>
+            </div>
+             <div id="rightnav">     
+                <div id="rightnavbuttons">
+                    <div class="buttons">                        
+                        <div id = "rightnavMenuButton">
+                        <div class="dropdown" style="width:13em;float:right">
+                            <a href="#" class="button right" style="width:13em;">
+                                <span class="icon icon4">
+                                </span>
+                                <span class="label">
+                                        <%=User.find_by_id(session[:user_id]).user_name%>
+                                </span>
+                            </a>
+                             <div class="dropdown-slider">
+                                 <a href="/users/<%=session[:user_id]%>" class="ddm">
+                                    <span class="icon icon112">
+                                    </span>
+                                    <span class="label">Profile</span>
+                                 </a>
+                                 <a href="/followships/show/<%=session[:user_id]%>" class="ddm" >
+                                    <span class="icon icon104">
+                                    </span>
+                                    <span class="label">
+                                        Following <%= "     " + Followship.where(:follower_id => session[:user_id]).count.to_s%>
+                                    </span>
+                                </a>
+                                <a href="/followships/present/<%=session[:user_id]%>" class="ddm" >
+                                    <span class="icon icon127">
+                                    </span>
+                                    <span class="label">
+                                        Followed by  <%= "     " + Followship.where(:followee_id => session[:user_id]).count.to_s%>
+                                    </span>
+                                </a>
+                                 <a href="/sessions/destroy" class="ddm" >
+                                    <span class="icon icon151">
+                                    </span>
+                                    <span class="label">
+                                        Logout
+                                    </span>
+                                </a>
+                             </div> <!-- /.dropdown-slider -->
+                         </div> <!-- /.dropdown -->
+                        </div>
+
+                        <div id = "rightnavAddButton">
+                        <a href = "/photos/new" class="button left">
+                            <span class="icon icon3">
+                            </span>
+                            <span class="label">
+                            Photo
+                            </span>
+                        </a>
+                        </div>
+
+                    </div>
+                </div>      
+            </div>
+    </div>
+    </div>
+
+
+   
+
+    
+    
+    
+    <%end%>
+<% if notice !=nil%>
+<div id="noticebox">
+    <%= notice %>
+</div>
+<%end%>
 
 <%= yield %>
+
+<script>
+        $(document).ready(function(){
+              $('.tiptip a.button, .tiptip button').tipTip();
+        });
+        $(document).ready(function() {
+            // Toggle the dropdown menu's
+            $(".dropdown .button, .dropdown button").click(function () {
+                $(this).parent().find('.dropdown-slider').slideToggle('fast');
+                $(this).find('span.toggle').toggleClass('active');
+                return false;
+            });
+        }); // END document.ready
+        
+        // Close open dropdown slider/s by clicking elsewhwere on page
+        $(document).bind('click', function (e) {
+            if (e.target.id != $('.dropdown').attr('class')) {
+                $('.dropdown-slider').slideUp();
+                $('span.toggle').removeClass('active');
+            }
+        }); // END document.bind
+</script>
+
+
 
 </body>
 </html>

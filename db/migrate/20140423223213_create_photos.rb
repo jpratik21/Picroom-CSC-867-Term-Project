@@ -9,3 +9,4 @@ class CreatePhotos < ActiveRecord::Migration
     add_index("photos", "user_id")
   end
 end
+
