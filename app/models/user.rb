@@ -1,10 +1,13 @@
 class User < ActiveRecord::Base
+
     has_secure_password
     
 	has_many :photos
 	has_many :comments
 
     mount_uploader :image, ImageUploader
+
+    validates :image, presence: true
 
 	scope :sorted, lambda { order("users.user_name ASC")}
 

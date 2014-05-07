@@ -86,6 +86,6 @@ class PhotosController < ApplicationController
       # same as using "params[:subject]", except that it:
       # - raises an error if :subject is not present
       # - allows listed attributes to be mass-assigned
-      params.require(:photo).permit(:name, :description)
+      params.require(:photo).permit(:image, :description)
     end
 end

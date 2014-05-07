@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20140506191924) do
 
   create_table "photos", force: true do |t|
     t.integer  "user_id"
-    t.string   "name",        limit: 25
+    t.string   "image"
     t.string   "description"
     t.datetime "created_at"
     t.datetime "updated_at"

@@ -90,6 +90,6 @@ class UsersController < ApplicationController
       # same as using "params[:subject]", except that it:
       # - raises an error if :subject is not present
       # - allows listed attributes to be mass-assigned
-      params.require(:user).permit(:user_name, :password, :email)
+      params.require(:user).permit(:user_name, :password, :email, :image)
     end
 end

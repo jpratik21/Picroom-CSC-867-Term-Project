@@ -9,9 +9,9 @@ Rails.application.routes.draw do
   #post '/comments/new/:id' => 'Comments#new'
   get '/followships/followers/:id' => 'followships#followers'
   get '/followships/followees/:id' => 'followships#followees'
-  #get '/follows/new/:id' => 'Follows#create'
-  #get '/follows/destroy/:id' => 'Follows#destroy'
-  #post '/search' => 'picroom#search', as: 'search'
+  get '/followships/new/:id' => 'followships#create'
+  get '/followships/destroy/:id' => 'followships#destroy'
+  post '/search' => 'picroom#search', as: 'search'
   get '/welcome' =>'picroom#welcome', as: 'welcome'
   get '/home' =>'picroom#home', as: 'home'
 

@@ -55,11 +55,11 @@
 <div id="bigbox">
 	<div id="container">
     <% if @photos != nil%>
-		  <% for @photo in @photos %>
+		  <% for photo in @photos %>
         <div class = "item">
-          <a href="/photos/<%=@photo.id%>">
+          <a href="/photos/<%=photo.id%>">
             <div class = "itemimage">
-              <%= image_tag @photo.image_url(:thumb).to_s %>
+              <%= image_tag photo.image_url.to_s %>
             </div>
           </a>
         </div>
