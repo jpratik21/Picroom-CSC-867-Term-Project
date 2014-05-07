@@ -12,7 +12,7 @@ class PicroomController < ApplicationController
 
 	def home
 		@user = User.find(session[:user_id])
-		@pictures = @user.followingpictures.order("created_at DESC")
+		@photos = @user.followingpictures.order("created_at DESC")
 	end
 
 	def search

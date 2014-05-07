@@ -12,12 +12,15 @@ class User < ActiveRecord::Base
 	scope :sorted, lambda { order("users.user_name ASC")}
 
 	def followingpictures
-        followships = Followship.select("followee_id").where(:follower_id => id)
+        followships = Followship.select("followee_id").where(:follower_id => self.id)
         followee_id_array = Array.new(followships.count)
-        followships.each_with_index do |element,index|
-	        followee_id_array[index] = element.followee_id
+        followee_id_array[0] = self.id
+        index = 1
+        followships.each do |f|
+	        followee_id_array[index] = f.followee_id
+            index += 1
         end
-        Photo.where(:user_id => @followee_id_array)
+        Photo.where(:user_id => followee_id_array)
 	end
 
     def followers

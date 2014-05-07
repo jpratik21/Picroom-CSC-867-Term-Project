@@ -5,7 +5,7 @@
         <div class = "item">
           <a href="photos/<%=photo.id%>">
             <div class = "itemimage">
-              <%= image_tag @photo.image_url(:thumb).to_s %>
+              <%= image_tag photo.image_url(:thumb).to_s %>
             </div>
           </a>
           <div class = "iteminnerbox">
