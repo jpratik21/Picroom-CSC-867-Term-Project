@@ -12,12 +12,12 @@ class User < ActiveRecord::Base
         followships = Followship.select("followee_id").where(:follower_id => id)
         followee_id_array = Array.new(followships.count)
         followships.each_with_index do |element,index|
-	        @followee_id_array[index] = element.followee_id
+	        followee_id_array[index] = element.followee_id
         end
         Photo.where(:user_id => @followee_id_array)
 	end
 
-    def follower
+    def followers
         Followship.where(:followee_id => self.id)
     end
 
