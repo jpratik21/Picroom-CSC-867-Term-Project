@@ -1,37 +1,34 @@
 == README
 
-* Ruby version
-ruby 2.0.0p451 (2014-02-24 revision 45167) [x86_64-darwin13.1.0]
+* Ruby version - ruby 2.0.0p451 (2014-02-24 revision 45167) [x86_64-darwin13.1.0]
 
-* System dependencies
-Please install MySQL (use homebrew), set up a default MySQL password.
+* System dependencies - Please install MySQL (use homebrew), set up a default MySQL password.
 
-* Configuration
+* Configuration - 
 
-* Database creation
-mysql -u room // login as the root user
-mysqladmin -u root -p // prompt for password
-// create database
-SHOW DATABASES;
-CREATE DATABASE picroom_dev;
-USE picroom_dev;
+* Database creation - 
+  i. setup MySQL
+    mysql -u root // login as the root user
+    mysqladmin -u root -p // prompt for password
+  ii. create database
+    SHOW DATABASES;
+    CREATE DATABASE picroom_dev;
+    USE picroom_dev;
+  iii. launch MySQL
+    mysql -u root -p 
+    GRANT ALL PRIVILEGES ON picroom.*
+    TO 'picroom'@'localhost'
+    IDENTIFIED BY 'password'
 
-// launch MySQL
-mysql -u root -p 
-GRANT ALL PRIVILEGES ON picroom.*
-TO 'picroom'@'localhost'
-IDENTIFIED BY 'password'
-
-SHOW GRANTS FOR 'picroom'@'localhost'
-
-Currently only creating db: picroom_dev
-Username: picroom
-Password: password
-In order to use the database, run the following:
-mysql -u picroom -p picroom_dev
-
-* Database initialization
-Work in rails c
+    SHOW GRANTS FOR 'picroom'@'localhost'
+  Note:
+    Currently only created db: picroom_dev
+    Username: picroom
+    Password: password
+  iiii. Use the database:
+    mysql -u picroom -p picroom_dev
+  
+* Database initialization - rails c
 
 * How to run the test suite
 
