@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
 
-  before_filter :checklogin, :except => [:new, :create]
+  before_action :checklogin, :except => [:new, :create]
   
   # GET /users
   # GET /users.json
